@@ -8,6 +8,7 @@ import Rooms from "./components/Rooms"
 import ResetPassword from "./components/ResetPassword"
 import Navbar from "./pages/Navbar";
 import Dashboard from "./components/Dashboard";
+import Protected from "./pages/Protected";
 function App() {
   return (
     <Router>
@@ -21,6 +22,8 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/rooms' element={<Rooms />} />
         <Route path='/Home' element={<Home/>} />
+
+        <Route path="/protected" element={<Protected/>}/>
         <Route path="/Resetpassword/:token" element={<ResetPassword/>} />
       </Routes>
     </Router>

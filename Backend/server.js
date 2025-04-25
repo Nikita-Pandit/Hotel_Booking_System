@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-// const authMiddleware=require("../middlewares/authMiddleware")
+const authMiddleware=require("./middlewares/authMiddleware")
 
 const bodyParser = require('body-parser');
 const app = express();
@@ -31,19 +31,6 @@ app.use("/api/auth", signUpRoutes)
 app.use("/api/auth",loginRoutes)
 app.use("/api/admin", adminWorks)
 
-// Middleware for Authentication
-const authMiddleware = (req, res, next) => {
-  const token = req.header("Authorization");
-  if (!token) return res.status(401).json({ message: "Access Denied" });
-  
-  try {
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = verified;
-    next();
-  } catch (err) {
-    res.status(400).json({ message: "Invalid Token" });
-  }
-};
 
 // Book a Room
 // app.post("/book", authMiddleware, async (req, res) => {
@@ -84,29 +71,8 @@ app.get("/admin/bookings", authMiddleware, async (req, res) => {
   }
 });
 
-// Protected Route Example
-app.get("/dashboard",authMiddleware, (req, res) => {
-  res.json({ message: "Welcome to your dashboard!", user: req.user });
-});
 
 
-
-
-
-
-
-
-
-//update-booking
-// app.put("/api/admin/update-booking/:id", async (req, res) => {
-//   const { status } = req.body;
-//   await Booking.findByIdAndUpdate(req.params.id, { status });
-//   res.json({ message: "Booking updated!" });
-// });
-
-
-
-// Update booking status
 app.put("/api/admin/update-booking/:id", async (req, res) => {
   try {
       const { status } = req.body;
@@ -421,7 +387,7 @@ app.post("/api/rooms/batch", async (req, res) => {
 });
 
 
-app.get("/api/apple",async(req,res)=>{
+app.get("/api/apple",authMiddleware, async(req,res)=>{
   console.log("mello mello mello")
   const { customerID } =req.query;
 
@@ -481,7 +447,7 @@ console.log("bookings", bookings)
 //   console.log("delete", user)
 //   res.json(user)
 // })
-app.delete("/api/bookings/:bookingId", async (req, res) => {
+app.delete("/api/bookings/:bookingId", authMiddleware, async (req, res) => {
   try {
     const { bookingId } = req.params;
     
@@ -511,7 +477,7 @@ app.delete("/api/bookings/:bookingId", async (req, res) => {
 });
 
 
-app.put("/api/updateCustomer/:customerID",async(req,res)=>{
+app.put("/api/updateCustomer/:customerID",authMiddleware, async(req,res)=>{
  
   try {
     const { customerID } = req.params;
@@ -544,5 +510,13 @@ console.log("updates", updates)
     });
   }
 })
+
+
+// 🔐 Protected Route
+app.get('/api/auth/protected', authMiddleware, (req, res) => {
+  res.json({ msg: 'Welcome to the protected route! You are authenticated.' });
+});
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

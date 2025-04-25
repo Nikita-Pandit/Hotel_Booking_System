@@ -44,7 +44,18 @@ console.log(email)
       const isPasswordValid = await bcrypt.compare(password, user.password);
       console.log("Password Match:", isPasswordValid);
       const token=jwt.sign(
-        {userID:user._id,email:user.email},
+      {
+        user:  {
+          userID:user._id,
+          email:user.email
+        }
+      },
+
+
+      // {
+      //   userID:user._id,
+      //   email:user.email
+      // },
         process.env.JWT_SECRET_KEY, 
         { expiresIn: '1h' }  // Expiration time (optional)
     )

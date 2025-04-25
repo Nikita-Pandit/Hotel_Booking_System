@@ -716,8 +716,17 @@ const Dashboard = () => {
   const handleSaveChanges = async (e) => {
     e.preventDefault();
     try {
+      const token=localStorage.getItem("token")
       const customerID = localStorage.getItem('customerID');
-      const response = await axios.put(`${backendUrl}/api/updateCustomer/${customerID}`, human);
+      const response = await axios.put(`${backendUrl}/api/updateCustomer/${customerID}`, 
+        
+        {
+          headers: {
+              'Authorization': `Bearer ${token}`
+            }
+      },
+        
+        human);
       setCustomer(response.data.data);
       setHuman(response.data.data);
       setIsEditing(false);
@@ -731,6 +740,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+      const token=localStorage.getItem("token")
         const customerID = localStorage.getItem('customerID');
         if (!customerID) {
           navigate('/login');
@@ -738,6 +748,9 @@ const Dashboard = () => {
         }
 
         const customerResponse = await axios.get(`${backendUrl}/api/apple`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
           params: { customerID }
         });
         setCustomer(customerResponse.data);
@@ -757,7 +770,14 @@ const Dashboard = () => {
 
   const cancelBooking = async (bookingId) => {
     try {
-      const response = await axios.delete(`${backendUrl}/api/bookings/${bookingId}`);
+      const token=localStorage.getItem("token")
+      const response = await axios.delete(`${backendUrl}/api/bookings/${bookingId}`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
       
       if (response.data.success) {
         setBookings(prevBookings => 

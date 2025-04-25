@@ -189,7 +189,9 @@ const AddRooms = () => {
       
       if (response.data.success) {
         setSuccessMessage("Room added successfully!");
+        alert(("Room added successfully!"))
         // Reset form
+        
         setFormData({
           roomNumber: "",
           price: "",

@@ -32,7 +32,7 @@ A comprehensive hotel management solution with room booking, admin dashboard, an
 ### Room Management
 | Add New Room | Rooms List |
 |--------------|------------|
-| ![Image](https://github.com/user-attachments/assets/4621c121-bc74-479f-a13c-d6c5ae63ea6e) | ![Image](https://github.com/user-attachments/assets/265beb10-a36d-4b3f-952f-57a3e0ca44b1) |
+| ![Image](https://github.com/user-attachments/assets/4621c121-bc74-479f-a13c-d6c5ae63ea6e) | ![Image](https://github.com/user-attachments/assets/1ad14dd4-8692-4c54-a5e6-2b8d1f199692) |
 
 **Add Room**: Interface for adding new room inventory  
 **Rooms List**: View all rooms with edit/delete controls

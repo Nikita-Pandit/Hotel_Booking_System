@@ -41,4 +41,4 @@ A comprehensive hotel management solution with room booking, admin dashboard, an
 *Current and upcoming reservations with guest details*
 
 ---
-![Image](https://github.com/user-attachments/assets/ac8ac8f0-58bb-4d44-ba99-9feb718b2916)
+

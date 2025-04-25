@@ -11,7 +11,7 @@ A comprehensive hotel management solution with room booking, admin dashboard, an
 ### Authentication
 | Login | Signup |
 |-------|--------|
-| ![Login](screenshots/login.png) | ![Signup](screenshots/signup.png) |
+| ![Image](https://github.com/user-attachments/assets/ddd95b99-077b-44bd-b1cd-b991215c94d8) | ![Image](https://github.com/user-attachments/assets/41ad38c1-d8e9-410f-8f4a-ed19189b162e)|
 
 ### Room Booking
 ![Image](https://github.com/user-attachments/assets/82e22ed0-2fdc-488c-a69d-3bfade01aa43)

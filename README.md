@@ -4,14 +4,19 @@ A comprehensive hotel management solution with room booking, admin dashboard, an
 
 ## Screenshots
 
-### Dashboard
+### Home Page
 ![Image](https://github.com/user-attachments/assets/8250d3a8-ad7c-4913-a57e-37fbc93a49b8)
+*Landing page with featured rooms and promotions*
 
-### Room Management
-![Room Management](screenshots/rooms.png)
+### Authentication
+| Login | Signup |
+|-------|--------|
+| ![Login](screenshots/login.png) | ![Signup](screenshots/signup.png) |
 
-### Booking System
-![Booking System](screenshots/booking.png)
+### Room Booking
+![Image](https://github.com/user-attachments/assets/82e22ed0-2fdc-488c-a69d-3bfade01aa43)
+*Customers can browse and filter rooms*
 
-### Admin Panel
-![Admin Panel](screenshots/admin.png)
+### User Dashboard
+![Dashboard](screenshots/dashboard.png)  
+*Booking history and account management*

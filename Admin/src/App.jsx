@@ -4,23 +4,25 @@ import AddRooms from "./pages/AddRooms";
 import RoomsList from './pages/RoomsList';
 import EditRoom from './pages/EditRoom';
 import BookingLists from './pages/BookingLists';
+import Home from "./components/Home"
+import Navbar from './components/Navbar';
 function App() {
 
   return (
-    <>
+
     <Router>
-      {/* <Navbar/> */}
+      <Navbar/>
     <Routes>
       <Route path="/addRoom" element={<AddRooms/>}/>
+      <Route path="/Home" element={<Home/>}/>
       <Route path="/roomLists" element={<RoomsList/>}/>
       <Route path="/editRoom" element={<EditRoom/>}/>
       <Route path="/bookLists" element={<BookingLists/>}/>
     </Routes>
-    </Router>
-    </>
+       </Router>
+
   )
 }
-
 export default App
 
 

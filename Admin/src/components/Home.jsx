@@ -1,71 +1,3 @@
-// import React from 'react'
-
-// const Home = () => {
-//   return (
-//     <div>
-//  <div className='flex flex-col items-center justify-center h-screen'>
-//       <h1 className='text-4xl font-bold text-gray-800'>Welcome to Hotel Booking System</h1>
-//       <p className='text-lg text-gray-600 mt-4'>Book rooms easily and manage reservations seamlessly.</p>
-//     </div> 
-//     </div>
-//   )
-// }
-
-// export default Home
-
-
-// import React from 'react'
-
-// const Home = () => {
-//   return (
-//     <div className="">
-//       <div className='flex flex-col items-center justify-center h-screen px-4 text-center'>
-//         <h1 className='text-4xl md:text-5xl font-bold text-gray-800 mb-6'>
-//           Welcome to LuxeStay Hotel Management System
-//         </h1>
-        
-//         <p className='text-lg md:text-xl text-gray-600 max-w-3xl mb-8'>
-//           Streamline your hotel operations with our comprehensive management solution. 
-//           From reservations to check-out, we provide all the tools you need to deliver 
-//           exceptional guest experiences.
-//         </p>
-        
-//         <div className="grid md:grid-cols-3 gap-8 mt-8">
-//           <div className=" p-6 rounded-lg shadow-md">
-//             <h3 className="text-xl font-semibold text-blue-600 mb-3">Easy Reservations</h3>
-//             <p className="text-gray-600">
-//               Manage bookings in real-time with our intuitive interface. 
-//               Handle online, phone, and walk-in reservations seamlessly.
-//             </p>
-//           </div>
-          
-//           <div className="p-6 rounded-lg shadow-md">
-//             <h3 className="text-xl font-semibold text-blue-600 mb-3">Room Management</h3>
-//             <p className="text-gray-600">
-//               Track room status, housekeeping, and maintenance all in one place. 
-//               Optimize your room inventory effortlessly.
-//             </p>
-//           </div>
-          
-//           <div className="p-6 rounded-lg shadow-md">
-//             <h3 className="text-xl font-semibold text-blue-600 mb-3">Guest Services</h3>
-//             <p className="text-gray-600">
-//               Enhance guest satisfaction with personalized services, 
-//               special requests handling, and loyalty program integration.
-//             </p>
-//           </div>
-//         </div>
-        
-//         <button className="mt-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300">
-//           Explore Features
-//         </button>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Home;
-
 
 import React from 'react'
 import {useNavigate} from "react-router-dom"
@@ -87,9 +19,9 @@ const Home = () => {
           </p>
           
           <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
-          onClick={()=>navigate("/Login")}
+          onClick={()=>navigate("/roomLists")}
           >
-            Get Started
+           Explore
           </button>
         </div>
 

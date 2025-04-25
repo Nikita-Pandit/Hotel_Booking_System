@@ -8,7 +8,10 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 // const authMiddleware=require("../middlewares/authMiddleware")
 
+const bodyParser = require('body-parser');
 const app = express();
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.json());
 app.use(cors());
 
@@ -92,9 +95,7 @@ app.get("/dashboard",authMiddleware, (req, res) => {
 
 
 
-// Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
 //update-booking
 // app.put("/api/admin/update-booking/:id", async (req, res) => {
@@ -419,16 +420,18 @@ app.post("/api/rooms/batch", async (req, res) => {
   }
 });
 
-app.get("/api/customers/:customerID",async(req,res)=>{
-  const { customerID } =req.params;
+
+app.get("/api/apple",async(req,res)=>{
+  console.log("mello mello mello")
+  const { customerID } =req.query;
 
   try{
     console.log("apple", customerID);
-const user=await userModel.findOne({customerID:_id})
+const user=await userModel.findById(customerID)
 if (!user) {
   return res.status(404).json({ message: "Customer not found" });
 }
-
+console.log("hello mello", user)
 res.json(user);
   }
  catch (error) {
@@ -439,7 +442,7 @@ res.status(500).json({ message: "Server error" });
 
 
 
-// Get all bookings for a specific customer
+// // Get all bookings for a specific customer
 app.get('/api/bookings', async (req, res) => {
   try {
     const { customerID } = req.query;
@@ -453,7 +456,7 @@ app.get('/api/bookings', async (req, res) => {
     }
 
     // Find bookings for this customer
-    const bookings = await Booking.find({ customerID:userID })
+    const bookings = await Booking.find({ userID:customerID })
       .populate('roomID') // If you want to include room details
       .sort({ checkInDate: -1 }); // Sort by check-in date (newest first)
 console.log("bookings", bookings)
@@ -472,3 +475,74 @@ console.log("bookings", bookings)
   }
 });
 
+// app.delete("/api/bookings/:bookingId", async(req,res)=>{
+//   const {id}=req.params;
+//   const user=await Booking.findOne({_id:id})
+//   console.log("delete", user)
+//   res.json(user)
+// })
+app.delete("/api/bookings/:bookingId", async (req, res) => {
+  try {
+    const { bookingId } = req.params;
+    
+    // Verify booking exists
+    const booking = await Booking.findOne({ _id: bookingId });
+    if (!booking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+
+    // Actually delete the booking
+    await Booking.deleteOne({ _id: bookingId });
+    
+    res.status(200).json({ 
+      success: true,
+      message: "Booking canceled successfully",
+      deletedId: bookingId
+    });
+    
+  } catch (error) {
+    console.error("Error deleting booking:", error);
+    res.status(500).json({ 
+      success: false,
+      message: "Failed to cancel booking",
+      error: error.message 
+    });
+  }
+});
+
+
+app.put("/api/updateCustomer/:customerID",async(req,res)=>{
+ 
+  try {
+    const { customerID } = req.params;
+    const updates = req.body;
+    console.log("id", customerID)
+console.log("updates", updates)
+    // If password is being updated, hash it first
+    // if (updates.password) {
+    //   updates.password = await bcrypt.hash(updates.password, 10);
+    // }
+
+    const customer = await userModel.findByIdAndUpdate(
+      customerID,
+      { $set: updates },
+      { new: true, runValidators: true }
+    )
+    // .select('-password'); // Don't return the password
+
+    if (!customer) {
+      return res.status(404).json({ success: false, message: 'Customer not found' });
+    }
+
+    res.status(200).json({ success: true, data: customer });
+  } catch (error) {
+    console.error('Error updating customer:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Error updating customer',
+      error: error.message 
+    });
+  }
+})
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

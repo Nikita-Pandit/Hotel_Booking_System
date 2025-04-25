@@ -161,9 +161,9 @@ const BookingLists = () => {
                                 </td>
                                 <td className="py-3 px-4">
                                     <span className={`px-2 py-1 rounded-full text-xs ${
-                                        booking.status === 'Approved' ? 'bg-green-100 text-green-800' :
-                                        booking.status === 'Rejected' ? 'bg-red-100 text-red-800' :
-                                        'bg-blue-700 text-white-800'
+                                        booking.status === 'Approved' ? 'bg-green-400 text-green-800' :
+                                        booking.status === 'Rejected' ? 'bg-red-400 text-red-800' :
+                                        'bg-yellow-400 text-white-800'
                                     }`}>
                                         {booking.status}
                                     </span>
@@ -172,7 +172,7 @@ const BookingLists = () => {
                                     {booking.status !== 'Approved' && (
                                         <button
                                             onClick={() => updateBookingStatus(booking._id, 'Approved')}
-                                            className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition"
+                                            className="bg-green-400 hover:bg-green-400 text-white px-3 py-1 rounded text-sm transition"
                                         >
                                             Approve
                                         </button>

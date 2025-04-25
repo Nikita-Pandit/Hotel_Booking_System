@@ -3,20 +3,35 @@ const Room=require("../models/Room")
 const Booking=require("../models/Booking")
 
 //AddRoom
-const addRoomController=async (req,res)=>{
-const   { roomNumber, price, roomType }=req.body;
-console.log("room added", req.body)
-try {
-    const newRoom = new Room({ roomNumber, price, roomType});
-    console.log("newRoom", newRoom)
+// const addRoomController=async (req,res)=>{
+// const   { roomNumber, price, roomType }=req.body;
+// console.log("room added", req.body)
+// try {
+//     const newRoom = new Room({ roomNumber, price, roomType});
+//     console.log("newRoom", newRoom)
+//     await newRoom.save();
+//     console.log("newRoom2", newRoom)
+//     res.status(201).json({ success:true, message: "Room added successfully", room: newRoom });
+//   } catch (error) {
+//     res.status(500).json({ message: "Error adding room", error });
+//   }
+// }
+
+
+const addRoomController = async (req, res) => {
+  const { roomNumber, price, roomType, description, availability, image, features, bedType } = req.body;
+
+  console.log("room added", req.body);
+  try {
+    console.log("apple")
+    const newRoom = new Room({ roomNumber, price, roomType, description, availability, image, features, bedType });
     await newRoom.save();
-    console.log("newRoom2", newRoom)
-    res.status(201).json({ success:true, message: "Room added successfully", room: newRoom });
+    res.status(201).json({ success: true, message: "Room added successfully", room: newRoom });
   } catch (error) {
     res.status(500).json({ message: "Error adding room", error });
   }
-}
-
+};
+9
 
 //deleteRoom
 const deleteRoomController=async(req,res)=>{
@@ -34,12 +49,12 @@ const deleteRoomController=async(req,res)=>{
 const editRoomController = async (req, res) => {
   try {
     console.log("Editing Room ID:", req.params.id);
-    const { roomNumber, price, roomType } = req.body;
+    const { roomNumber, price, roomType, description, availability, image, features, bedType  } = req.body;
     const id = req.params.id;
 
     const result = await Room.findOneAndUpdate(
       { _id: id }, // Query by _id
-      { roomNumber, price, roomType }, // Update fields
+      { roomNumber, price, roomType,description, availability, image, features, bedType  }, // Update fields
       { new: true } // Return updated document
     );
 

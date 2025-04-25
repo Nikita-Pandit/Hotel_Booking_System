@@ -18,5 +18,5 @@ A comprehensive hotel management solution with room booking, admin dashboard, an
 *Customers can browse and filter rooms*
 
 ### User Dashboard
-![Dashboard](screenshots/dashboard.png)  
+![Image](https://github.com/user-attachments/assets/87d6c538-1316-4a82-af5a-86d56142e37c)
 *Booking history and account management*

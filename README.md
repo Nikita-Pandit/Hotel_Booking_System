@@ -23,12 +23,6 @@ A comprehensive hotel management solution with room booking, admin dashboard, an
 
 ## Admin Panel Screenshots
 
-### Admin Dashboard
-![Admin Dashboard](https://github.com/[your-username]/Hotel_Booking_System/raw/main/images/customer-deathboard.png.jpg)  
-*Overview of hotel operations and quick metrics*
-
----
-
 ### Room Management
 | Add New Room | Rooms List |
 |--------------|------------|
@@ -45,7 +39,3 @@ A comprehensive hotel management solution with room booking, admin dashboard, an
 
 ---
 
-### Quick Actions
-1. **Hover states** on interactive elements
-2. **Filters** applied to rooms list
-3. **Bulk operations** interface (if available)

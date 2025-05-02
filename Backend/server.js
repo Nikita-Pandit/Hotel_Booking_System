@@ -3,7 +3,8 @@ const dotenv=require("dotenv")
 const config=dotenv.config()
 const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
+
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const authMiddleware=require("./middlewares/authMiddleware")

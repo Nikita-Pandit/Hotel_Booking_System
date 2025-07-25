@@ -195,12 +195,22 @@
 
 
 
-      import React from 'react';
-import { useNavigate } from 'react-router-dom';
+      import React , {useEffect} from 'react';
+import { useNavigate, useLocation  } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
-
+    const location=useLocation()
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const id = queryParams.get("id");
+    if (id) {
+      console.log("Id received from URL:", id);
+        localStorage.setItem("customerID", id);
+        navigate("/SignUp");
+      
+    }
+  }, [navigate, location]);
   return (
     <div className="min-h-screen bg-[#0f172a] text-white">
       <div className="container mx-auto px-4 py-16">

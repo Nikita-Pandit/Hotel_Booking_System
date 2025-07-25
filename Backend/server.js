@@ -236,7 +236,10 @@ console.log(userIDMatchWithToken)
           return res.status(400).json({ message: 'Invalid or expired token',user });
       }
 
-      return res.redirect(`${frontendUrl}/signup?id=${user._id}`);
+      // return res.redirect(`${frontendUrl}/signup?id=${user._id}`);
+            return res.redirect(
+        `${frontendUrl}?id=${user._id}`
+      );
   } catch (error) {
       console.error('Error during verification:', error);
       res.status(400).json({ error: 'Verification failed' });

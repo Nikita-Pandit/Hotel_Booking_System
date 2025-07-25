@@ -72,13 +72,13 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const id = queryParams.get('id');
-    if (id) {
-      localStorage.setItem("customerID", id);
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   const queryParams = new URLSearchParams(location.search);
+  //   const id = queryParams.get('id');
+  //   if (id) {
+  //     localStorage.setItem("customerID", id);
+  //   }
+  // }, [location]);
 
 
   const handleSubmit = async (e) => {

@@ -717,16 +717,30 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       const token=localStorage.getItem("token")
+      console.log("handleSaveChanges", token);
       const customerID = localStorage.getItem('customerID');
+
+      // const response = await axios.put(`${backendUrl}/api/updateCustomer/${customerID}`, 
+        
+      //   {
+      //     headers: {
+      //         'Authorization': `Bearer ${token}`
+      //       }
+      // },
+        
+      //   human);
+
+
+
       const response = await axios.put(`${backendUrl}/api/updateCustomer/${customerID}`, 
-        
-        {
-          headers: {
-              'Authorization': `Bearer ${token}`
-            }
-      },
-        
-        human);
+  human, 
+  {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }
+);
+
       setCustomer(response.data.data);
       setHuman(response.data.data);
       setIsEditing(false);
@@ -846,13 +860,13 @@ const Dashboard = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Sidebar */}
-          <nav className="w-full md:w-64 flex-shrink-0">
-            <div className="rounded-lg shadow-sm p-4 space-y-2 border border-gray-200">
+          <nav className="w-full md:w-64 flex-shrink-0 ">
+            <div className="rounded-lg shadow-sm p-4 space-y-2 border border-gray-200 bg-[#1e293b]">
               <button 
                 className={`w-full flex items-center px-4 py-3 rounded-lg transition-all duration-200 ${activeTab === 'overview' ? 'text-blue-600 font-medium' : 'text-gray-700  hover:text-gray-900'}`}
                 onClick={() => setActiveTab('overview')}
               >
-                <FiHome className="mr-3" /> Overview
+                <FiHome className="mr-3 " /> Overview
               </button>
               <button 
                 className={`w-full flex items-center px-4 py-3 rounded-lg  ${activeTab === 'bookings' ? ' text-blue-600 font-medium' : 'text-gray-700'}`}
@@ -875,12 +889,12 @@ const Dashboard = () => {
             </div>
 
             {/* Help Card */}
-            <div className="mt-6 rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-200 border border-gray-200">
+            <div className="bg-[#1e293b] mt-6 rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-200 border border-gray-200">
               <div className="flex items-start">
                 <div className="p-2 bg-blue-400 rounded-full text-blue-600">
                   <FiHelpCircle size={20} />
                 </div>
-                <div className="ml-3">
+                <div className="ml-3 ">
                   <h3 className="font-medium">Need help?</h3>
                   <p className="text-sm text-gray-600 mt-1">Our support team is available 24/7</p>
                   <button className="mt-2 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
@@ -918,7 +932,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Quick Actions */}
-                <div className="p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200">
+                <div className=" bg-[#1e293b] p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200">
                   <h2 className="text-xl font-bold text-gray-800 mb-4">Quick Actions</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <Link 
@@ -938,8 +952,8 @@ const Dashboard = () => {
                       <span className="font-medium text-gray-800">Contact Support</span>
                       <p className="text-sm text-gray-600 mt-1">We're here to help</p>
                     </button>
-                    <button className="hover:bg-purple-50 p-4 rounded-lg transition-all duration-200 flex flex-col items-center text-center border border-gray-200 hover:border-purple-200">
-                      <div className="p-3 bg-purple-400 rounded-full mb-2">
+                    <button className=" p-4 rounded-lg transition-all duration-200 flex flex-col items-center text-center border border-gray-200 ">
+                      <div className="p-3 bg-purple-400 rounded-full mb-2 ">
                         <FiStar className="text-purple-600" size={20} />
                       </div>
                       <span className="font-medium text-gray-800">Special Offers</span>
@@ -1036,12 +1050,16 @@ const Dashboard = () => {
                             {new Date(booking.checkInDate) > new Date() && (
                               <button 
                                 onClick={() => cancelBooking(booking._id)}
-                                className="flex items-center px-3 py-2 text-red-600 rounded-md hover:bg-red-50 transition-all duration-200 text-sm border border-red-100 hover:border-red-200"
+                                // className="flex items-center px-3 py-2 text-red-600 rounded-md hover:bg-red-50 transition-all duration-200 text-sm border border-red-100 hover:border-red-200"
+                                                 className="flex items-center px-3 py-2 text-red-600 rounded-md transition-all duration-200 text-sm border border-red-100 "
                               >
                                 <BsXCircle className="mr-1" /> Cancel
                               </button>
                             )}
-                            <button className="flex items-center px-3 py-2 text-gray-700 rounded-md hover:bg-gray-200 transition-all duration-200 text-sm border border-gray-200 hover:border-gray-300">
+ <button
+//  className="flex items-center px-3 py-2 text-gray-700 rounded-md hover:bg-gray-200 transition-all duration-200 text-sm border border-gray-200 hover:border-gray-300"
+ className="flex items-center px-3 py-2 text-gray-700 rounded-md transition-all duration-200 text-sm border border-gray-200"
+ >
                               View Details
                             </button>
                           </div>
@@ -1100,7 +1118,8 @@ const Dashboard = () => {
                         <button 
                           type="button"
                           onClick={() => setIsEditing(true)}
-                          className="px-4 py-2  text-gray-800 rounded-md border border-gray-200 hover:bg-gray-200 transition-all duration-200 font-medium flex items-center hover:shadow-sm"
+                          // className="px-4 py-2  text-gray-800 rounded-md border border-gray-200 hover:bg-gray-200 transition-all duration-200 font-medium flex items-center hover:shadow-sm"
+                                               className="px-4 py-2  text-gray-800 rounded-md border border-gray-200  transition-all duration-200 font-medium flex items-center"
                         >
                           <FiEdit className="mr-2" /> Edit Profile
                         </button>
@@ -1109,7 +1128,8 @@ const Dashboard = () => {
                           <button 
                             type="button"
                             onClick={handleCancelEdit}
-                            className="px-4 py-2 text-gray-800 rounded-md hover:bg-gray-200 transition-all duration-200 font-medium border border-gray-200"
+                            // className="px-4 py-2 text-gray-800 rounded-md hover:bg-gray-200 transition-all duration-200 font-medium border border-gray-200"
+                             className="px-4 py-2 text-gray-800 rounded-md  transition-all duration-200 font-medium border border-gray-200"
                           >
                             Cancel
                           </button>

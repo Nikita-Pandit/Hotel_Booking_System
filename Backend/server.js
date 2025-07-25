@@ -478,7 +478,7 @@ app.delete("/api/bookings/:bookingId", authMiddleware, async (req, res) => {
 });
 
 
-app.put("/api/updateCustomer/:customerID",authMiddleware, async(req,res)=>{
+app.put("/api/updateCustomer/:customerID", authMiddleware , async(req,res)=>{
  
   try {
     const { customerID } = req.params;

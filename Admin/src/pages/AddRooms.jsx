@@ -321,7 +321,7 @@ const AddRooms = () => {
         {/* Bed Type and Room Type */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="bedType" className="block text-sm font-medium text-gray-700 mb-1">
+            {/* <label htmlFor="bedType" className="block text-sm font-medium text-gray-700 mb-1">
               Bed Type *
             </label>
             <select
@@ -334,7 +334,35 @@ const AddRooms = () => {
               <option value="Single">Single</option>
               <option value="Double">Double</option>
               <option value="King">King</option>
-            </select>
+            </select> */}
+
+            <label htmlFor="bedType" className="block text-sm font-medium text-gray-700 mb-1">
+  Bed Type *
+</label>
+<select
+  id="bedType"
+  name="bedType"
+  value={formData.bedType}
+  onChange={handleChange}
+  className="w-full text-black px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" // Keep white bg for the closed state
+>
+  <option value="Single">Single</option>
+  <option value="Double">Double</option>
+  <option value="King">King</option>
+</select>
+
+<style jsx>{`
+  /* For the dropdown options */
+  select option {
+    background-color: #1a202c; /* Replace with your dark bg color */
+    color: white;
+  }
+  
+  /* For when the dropdown is opened */
+  select:focus option:checked {
+    background-color: #2d3748; /* Slightly different color for selected option */
+  }
+`}</style>
           </div>
           
           <div>
@@ -352,6 +380,19 @@ const AddRooms = () => {
               <option value="Deluxe">Deluxe</option>
               <option value="Suite">Suite</option>
             </select>
+
+            <style jsx>{`
+  /* For the dropdown options */
+  select option {
+    background-color: #1a202c; /* Replace with your dark bg color */
+    color: white;
+  }
+  
+  /* For when the dropdown is opened */
+  select:focus option:checked {
+    background-color: #2d3748; /* Slightly different color for selected option */
+  }
+`}</style>
           </div>
         </div>
         

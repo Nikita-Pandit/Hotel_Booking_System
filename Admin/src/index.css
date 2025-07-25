@@ -78,9 +78,9 @@
     text-align: center;
    margin-bottom: 3vh;
    }
-   textarea{
+   /* textarea{
     border:2px solid rgb(57, 154, 181) ;
-   }
+   } */
   .image-profile-container{
     border-color: #111;
     height:30vh;

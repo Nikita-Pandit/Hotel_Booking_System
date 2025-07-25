@@ -44,7 +44,7 @@ console.log(email)
 
       const isPasswordValid = await bcrypt.compare(password, user.password);
       console.log("Password Match:", isPasswordValid);
-      const token=jwt.sign(
+      const token= jwt.sign(
       {
         user:  {
           userID:user._id,

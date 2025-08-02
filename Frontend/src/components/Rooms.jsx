@@ -351,6 +351,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
@@ -410,7 +412,7 @@ const Rooms = () => {
       alert("Booking request sent successfully!");
     } catch (error) {
       console.error("Error booking room", error);
-      alert(error.response?.data?.message || "Error booking room");
+    toast.error(error.response?.data?.message || "Error booking room");
     }
   };
 
@@ -429,7 +431,9 @@ const Rooms = () => {
   );
 
   return (
+    
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <ToastContainer />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Find Your Perfect Room</h1>

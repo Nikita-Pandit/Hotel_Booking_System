@@ -678,6 +678,8 @@ import axios from "axios";
 import { FiHome, FiCalendar, FiUser, FiLogOut, FiPlusCircle, FiHelpCircle, FiStar } from 'react-icons/fi';
 import { BsArrowRightShort, BsCheckCircle, BsXCircle } from 'react-icons/bs';
 import { FiEdit } from 'react-icons/fi';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Dashboard = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -713,43 +715,33 @@ const Dashboard = () => {
     setHuman({ ...human, [name]: value });
   };
 
-  const handleSaveChanges = async (e) => {
-    e.preventDefault();
-    try {
-      const token=localStorage.getItem("token")
-      console.log("handleSaveChanges", token);
-      const customerID = localStorage.getItem('customerID');
-
-      // const response = await axios.put(`${backendUrl}/api/updateCustomer/${customerID}`, 
-        
-      //   {
-      //     headers: {
-      //         'Authorization': `Bearer ${token}`
-      //       }
-      // },
-        
-      //   human);
 
 
 
-      const response = await axios.put(`${backendUrl}/api/updateCustomer/${customerID}`, 
-  human, 
-  {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
+const handleSaveChanges = async (e) => {
+  e.preventDefault();
+  try {
+    const token = localStorage.getItem("token");
+    const customerID = localStorage.getItem('customerID');
+
+    const response = await axios.put(`${backendUrl}/api/updateCustomer/${customerID}`, 
+      human, 
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+
+    setCustomer(response.data.data);
+    setHuman(response.data.data);
+    setIsEditing(false);
+    toast.success('Profile updated successfully!');
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    toast.error('Failed to update profile. Please try again.');
   }
-);
-
-      setCustomer(response.data.data);
-      setHuman(response.data.data);
-      setIsEditing(false);
-      alert('Profile updated successfully!');
-    } catch (error) {
-      console.error('Error updating profile:', error);
-      alert('Failed to update profile. Please try again.');
-    }
-  };
+};
 
   useEffect(() => {
     const fetchData = async () => {
@@ -797,13 +789,15 @@ const Dashboard = () => {
         setBookings(prevBookings => 
           prevBookings.filter(booking => booking._id !== bookingId)
         );
-        alert('Booking canceled successfully!');
+            toast.success('Booking canceled successfully!');
+        
       } else {
         throw new Error(response.data.message || 'Failed to cancel booking');
       }
     } catch (error) {
       console.error('Error canceling booking:', error);
-      alert(error.message || 'Error canceling booking. Please try again.');
+      toast.error(error.message || 'Error canceling booking. Please try again.');
+     
     }
   };
 
@@ -833,6 +827,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen">
+        <ToastContainer />
       {/* Header */}
       <header className="shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
